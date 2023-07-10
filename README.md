@@ -20,7 +20,7 @@ The embed-resources setting will create self contained HTML files when marked Tr
 
 ### Why not pptx?
 
-If Quarto has a way to dynamically embed images (like the "The Teams" slide and Title slide rely on) I have not found it. Missing this functionality rendering from Quarto doesn't have a lot of utility and a powerpoint template would be equally as effective.
+If Quarto has a way to dynamically embed images (like the "The Teams" slide and Title slide rely on) in a powerpoint document I have not found it. When missing this functionality rendering from Quarto doesn't have a lot of utility, and a powerpoint template would be equally as effective.
 
 ### How can i live edit the document?
 
