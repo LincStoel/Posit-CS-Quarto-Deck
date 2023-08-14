@@ -41,9 +41,16 @@ params:
   president_name: Tareef Kawaf
   president_linkedin: "https://media.licdn.com/dms/image/C4E03AQENYjMMdu8fDg/profile-displayphoto-shrink_200_200/0/1579126397641?e=1693440000&v=beta&t=U8myQndUTyAT1rl3bx462fsBgDWGbdQEOx2V_vtbm-s"
   agenda: ""
+  license_term: "XX/YY/ZZ - XX/YY/ZZ"
+  workbench_NU: "N/A"
+  connect_NU: "100 NU"
+  PPM: "N/A"
+  academy: false
+  PPS: false
+  TAM: false
 output-file: "CS_Agenda_and_Team.html"
 #embed resources takes longer to render, but allows you to share the slides outside of the project folder, change to false if you don't need that functionality
-embed-resources: true
+embed-resources: false
 ---
 ```{r include=FALSE}
 library(quarto)
@@ -145,6 +152,177 @@ Agenda
 :::
 :::
 :::
+
+
+## 
+<!-- Header adjustment > center-->
+<h2 style="text-align: center">
+License Review
+</h2>
+<p style="text-align: center; color:#437099;">
+License Term: `r params$license_term`
+</p>
+<!-- display adjustments -->
+```{r include=FALSE}
+shapeHeight <- 138
+
+color1 <- "#437099"
+color2 <- "#ee6331"
+color3 <- "#72994e"
+color4 <- "#7293b2"
+color5 <- "#429599"
+color6 <- "#994665"
+nacolor <- "#8b8b8d"
+
+if(params$workbench_NU == "N/A"){
+  color1 = nacolor
+}
+
+if(params$connect_NU == "N/A"){
+  color2 = nacolor
+}
+
+if(params$PPM == "N/A"){
+  color3 = nacolor
+}
+
+if(params$academy == FALSE){
+  color4 = nacolor
+}
+
+if(params$PPS == FALSE){
+  color5 = nacolor
+}
+
+if(params$TAM == FALSE){
+  color6 = nacolor
+}
+
+```
+<!-- Content -->
+<style>
+  .hexagon {
+    position: absolute;
+    height: `r shapeHeight`px;
+    width: `r shapeHeight * (97/84)`px;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
+  
+  figure.radial {
+    position: absolute;
+    /* To correctly align image, regardless of content height: */
+    display: block;
+    /* To horizontally center images and caption */
+    text-align: center;
+    /* The width of the container also implies margin around the images. */
+    margin: auto;
+    width: 100%;
+    top: 13%;
+  }
+  .radialImg {
+    width: 30%;
+    height: auto;
+  }
+  
+  .chevron-grouping {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .boxed_left {
+    padding-top: 25px;
+    width: 100%;
+    height: 30%;
+    text-align: left;
+  }
+  
+  .boxed_right {
+    padding-top: 25px;
+    width: 100%;
+    height: 30%;
+    text-align: right;
+  }
+  
+  .Parent {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .row {
+    display: block;
+    flex-direction: column;
+    flex: 87%;
+  }
+  
+  .spacer {
+    diplay: block;
+    width: 100%;
+  }
+</style>
+
+<!-- Graphic -->
+<div class="chevron-grouping">
+  <div class="hexagon" style="background:`r color1`; left:51.55%; top:9.7%;"></div>
+  <div class="hexagon" style="background:`r color2`; left:58%; top:29.87%;"></div>
+  <div class="hexagon" style="background:`r color3`; left:51.55%; top:50.3%;"></div>
+  <div class="hexagon" style="background:`r color4`; left:38.5%; top:9.7%;"></div>
+  <div class="hexagon" style="background:`r color5`; left:32%; top:29.72%;"></div>
+  <div class="hexagon" style="background:`r color6`; left:38.45%; top:50.3%;"></div>
+  
+  <figure class="radial">
+      <img src="_additional_images/posit_solutions_radial.png" class="radialImg"/>
+  </figure>
+</div>
+
+<div class="Parent">
+<!-- Left Columnn -->
+<div class="row">
+<div class="boxed_left">
+  <h4 style="font-size:36px;"><font color=`r color4`>Posit Academy</font></h4>
+  
+  <small>Train data scientists in R and Python with our guided apprenticeship program. Complete real data science projects, share your work in group sessions, and learn from our mentors.</small>
+</div>
+
+<div class="boxed_left">
+  <h4 style="font-size:36px;"><font color=`r color5`>Premium Plus Support</font></h4>
+  
+  <small>Callback support, expanded support hours (7a-7p ET excl. weekends + holidays), 4-hour response time for Sev1 and Sev2 issues.</small>
+</div>
+
+<div class="boxed_left">
+  <h4 style="font-size:36px;"><font color=`r color6`>Technical Account Management (TAM)</font></h4>
+  
+  <small>Weekly meetings with Posit Solutions Engineers to help you architect your platform and provide a great experience for your users.</small>
+</div>
+</div>
+
+<!-- spacer -->
+<div class="spacer">
+</div>
+
+<div class="row">
+<!-- Right Columnn -->
+
+<div class="boxed_right">
+  <h4 style="font-size:36px;"><font color=`r color1`>Posit Workbench (`r params$workbench_NU`)</font></h4>
+  
+  <small>Develop in RStudio, Jupyter, and VS Code with additional features for enterprise collaboration, security, and scalability.</small>
+</div>
+
+<div class="boxed_right">
+  <h4 style="font-size:36px;"><font color=`r color2`>Posit Connect (`r params$connect_NU`)</font></h4>
+  
+  <small>Share your applications, schedule your code, and deploy your models in R and Python frameworks like Shiny, Quarto, Streamlit, Dash, R Markdown, and more.</small>
+</div>
+
+<div class="boxed_right">
+  <h4 style="font-size:36px;"><font color=`r color3`>Posit Package Manager (`r params$PPM`)</font></h4>
+  
+  <small>Control and distribute R and Python packages throughout your organization. Serve packages from CRAN, PyPI, Bioconductor, and internally developed packages.</small>
+</div>
+</div>
+</div>
 
 ## Strategic Goals for your Posit software {background-color="#17212B"}
 

@@ -1,0 +1,179 @@
+---
+# Built upon the wonderful extension that Tom Mock put together
+# Template managed by Linc Stoel
+title: "`r params$presentation_title`"
+date: "last-modified"
+date-format: 'MM/DD/YY'
+customer-logo: "`r params$customer_logo`"
+title-slide-attributes:
+  data-background-color: white
+  data-background-image: "_extensions/jthomasmock/positslides/assets/backgrounds/sample-title-slide-option-1.png"
+  data-background-size: contain
+format:
+  positslides-revealjs:
+    transition: slide
+    background-transition: slide
+    width: '1600'
+    height: '900'
+    template-partials: 
+      - title-slide.html
+    theme: custom.scss
+params:
+  presentation_title: "Quarterly Check-In"
+  customer_logo: "https://aemo.com.au/-/media/project/aemo/global/logos/aemo-logo.svg"
+  customer: AEMO
+  contact_1_title: Data Science Lead
+  contact_1: Josh Brodrick
+  pcontact_1_linkedin: ''
+  contact_2_title: Forecasting System Specialist
+  contact_2: Mark Taylor
+  pcontact_2_linkedin: 'https://media.licdn.com/dms/image/C4E03AQH_zaBaBC9v9g/profile-displayphoto-shrink_200_200/0/1516291409160?e=1696464000&v=beta&t=00nJ2ddkpLPLL1cy1xxeCUI53z85jPXKNC9rQP9sBe0'
+  contact_3_title: Executive Sponsor
+  contact_3: Name
+  pcontact_3_linkedin: ''
+  contact_4_title: Data and Solution Architect
+  contact_4: Joga Nakka
+  pcontact_4_linkedin: 'https://media.licdn.com/dms/image/C5103AQHRZA8Gqa5cNQ/profile-displayphoto-shrink_200_200/0/1516273983694?e=1696464000&v=beta&t=qdMSeWzF4FGGzdqdpbE6kkj6Bsc6xlFUNGPJF3DClYg'
+  ae_name: Taylor Smith
+  ae_linkedin: "https://media.licdn.com/dms/image/D5603AQHjGej-dPOX0Q/profile-displayphoto-shrink_200_200/0/1678309055401?e=1696464000&v=beta&t=KGxaeU12nTiLfz3xmzrDiXSZNmNeoGkJQ6gGWUJrhrc"
+  cs_name: Lincoln Stoel
+  cs_linkedin: "https://media.licdn.com/dms/image/D4E03AQGORWrkXXx4wA/profile-displayphoto-shrink_200_200/0/1668530290679?e=1696464000&v=beta&t=abPtBxFPkWZrgt0A5lkT8-zjunMjEA-HFY2w58PHtB0"
+  president_name: Tareef Kawaf
+  president_linkedin: "https://media.licdn.com/dms/image/C4E03AQENYjMMdu8fDg/profile-displayphoto-shrink_200_200/0/1579126397641?e=1693440000&v=beta&t=U8myQndUTyAT1rl3bx462fsBgDWGbdQEOx2V_vtbm-s"
+  agenda: ""
+  license_term: "11/27/23 - 11/26/24"
+  workbench_NU: "11"
+  connect_NU: "100"
+  PPM: "S"
+  academy: true
+  PPS: true
+  TAM: true
+output-file: "CS_Agenda_and_Team.html"
+#embed resources takes longer to render, but allows you to share the slides outside of the project folder, change to false if you don't need that functionality
+embed-resources: false
+---
+```{r include=FALSE}
+library(quarto)
+library(knitr)
+
+# linkedin image fallback to customer logo
+contact_1_linkedin <- params$pcontact_1_linkedin
+contact_2_linkedin <- params$pcontact_2_linkedin
+contact_3_linkedin <- params$pcontact_3_linkedin
+contact_4_linkedin <- params$pcontact_4_linkedin
+
+
+if (contact_1_linkedin=="") {
+  contact_1_linkedin <- params$customer_logo
+}
+if (contact_2_linkedin=="") {
+  contact_2_linkedin <- params$customer_logo
+}
+if (contact_3_linkedin=="") {
+  contact_3_linkedin <- params$customer_logo
+}
+if (contact_4_linkedin=="") {
+  contact_4_linkedin <- params$customer_logo
+}
+
+
+  
+```
+##  {background-image="_extensions/jthomasmock/positslides/assets/backgrounds/toc-light.png" background-size="contain"}
+
+<!-- Header adjustment > in background image-->
+
+<h2 style="position: absolute; top: 8px; left: 45px;">
+Agenda
+</h2>
+<!-- fix content height -->
+<br> <br>
+<!-- content below -->
+
+- Team Review
+- Review Usage
+- Databricks Partnership
+- Review strategic goals for your Posit software
+
+## The Teams
+::: columns
+::: {.column width="50%"}
+### Posit
+::: {.r-stack}
+<div class="row">
+  <figure class="item">
+      <img src="`r URLencode(params$cs_linkedin)`" class="profile"/>
+      <figcaption class="caption">Customer Success Manager:<br>`r params$cs_name`</figcaption>
+  </figure>
+  <figure class="item">
+      <img src="`r URLencode(params$ae_linkedin)`" class="profile"/>
+      <figcaption class="caption">Account Executive:<br>`r params$ae_name`</figcaption>
+  </figure>
+</div>
+:::
+::: {.r-stack}
+<div class="row">
+  <figure class="item">
+      <img src="`r URLencode(params$president_linkedin)`" class="profile"/>
+      <figcaption class="caption">President:<br>`r params$president_name`</figcaption>
+  </figure>
+</div>
+:::
+:::
+::: {.column width="50%"}
+### `r params$customer`
+::: {.r-stack}
+<div class="row">
+  <figure class="item">
+      <img src="`r URLencode(contact_1_linkedin)`" class="profile"/>
+      <figcaption class="caption">`r params$contact_1_title`:<br>`r params$contact_1`</figcaption>
+  </figure>
+  <figure class="item">
+      <img src="`r URLencode(contact_2_linkedin)`" class="profile"/>
+      <figcaption class="caption">`r params$contact_2_title`:<br>`r params$contact_2`</figcaption>
+  </figure>
+</div>
+:::
+::: {.r-stack}
+<div class="row">
+  <figure class="item">
+      <img src="`r URLencode(contact_3_linkedin)`" class="profile"/>
+      <figcaption class="caption">`r params$contact_3_title`:<br>`r params$contact_3`</figcaption>
+  </figure>
+<!-- Remove this \/ if you only have three contacts -->
+  <figure class="item">
+      <img src="`r URLencode(contact_4_linkedin)`" class="profile"/>
+      <figcaption class="caption">`r params$contact_4_title`:<br>`r params$contact_4`</figcaption>
+  </figure>
+<!-- Remove this /\ if you only have three contacts -->
+</div>
+:::
+:::
+:::
+
+## Current Usage {background-color="#17212B"}
+
+<!-- content goes here -->
+- Data Science Team
+  - Production Grade Machine Learning
+  - ETL tasks
+- Forecasting
+  - Energy Actuals
+  - ETL tasks
+  - Interface with Databricks
+  
+## Databricks Partnership
+- [Databricks presentation](https://docs.google.com/presentation/d/1gyPyCpRsSQzLGJz3FeVFfzc77ZsB9MaMwjkMzsDz320/edit#slide=id.g18cfb3e4b35_0_294)
+
+## Strategic Goals for your Posit software
+
+<!-- content goes here -->
+- Next 6 months?
+- Next year?
+
+::: {.incremental}
+- Plans to move to Connect and Workbench?
+  - Connect Can host APIs, Pin data sets, host python content, etc.
+  - Workbench can use shared compute resources to run RStudio, VSCode, and Jupyter Lab.
+  - Workbench also includes real time Project Sharing, off host execution
+:::
