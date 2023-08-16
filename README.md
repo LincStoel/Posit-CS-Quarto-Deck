@@ -6,6 +6,16 @@ Basic Quarto slides for agenda and team review
 
 Fill in the parameter values in the YML frontmatter of the "Posit_Agenda_and_Contact_Slides.qmd" and edit the "Agenda", "Strategic Goals for your Posit software", and "Posit Resources & News" slides as needed. The "The Teams" slide will automatically populate based on the parameters.
 
+"embed-resources" is set to "true" by default. This setting allows you to send the rendered html document to your meeting attendees without having to include a folder of assets. This significantly slows rendering so if this is not a feature you need consider setting this to false in the YAML front matter of the quarto document.
+
+### Required Packages
+
+[Quarto](https://cran.r-project.org/web/packages/quarto/index.html)
+
+[Knitr](https://cran.r-project.org/web/packages/knitr/index.html)
+
+[bizdays](https://cran.r-project.org/web/packages/bizdays/index.html)
+
 ## Usage
 
 ### Images

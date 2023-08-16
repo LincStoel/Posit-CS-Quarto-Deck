@@ -3,7 +3,8 @@
 # Template managed by Linc Stoel
 title: "`r params$presentation_title`"
 date: "last-modified"
-date-format: 'MM/DD/YY'
+## Set dateFormat and date-format seperately
+date-format: "MM/DD/YYYY"
 customer-logo: "`r params$customer_logo`"
 title-slide-attributes:
   data-background-color: white
@@ -20,12 +21,14 @@ format:
     theme: custom.scss
 params:
   presentation_title: "Quarterly Check-In"
+## Set dateFormat and date-format seperately
+  dateFormat: '%m/%d/%Y'
   customer_logo: "https://posit.co/wp-content/uploads/2022/09/posit.svg"
-  customer: Customer Name
-  contact_1_title: Admin
+  customer: Example
+  contact_1_title: Champion
   contact_1: Name
   pcontact_1_linkedin: ''
-  contact_2_title: Champion
+  contact_2_title: Admin
   contact_2: Name
   pcontact_2_linkedin: ''
   contact_3_title: Executive Sponsor
@@ -43,21 +46,28 @@ params:
   
 ## Licensing parameters
 ## If not applicable populate with "N/A"
-  license_start: "MM/DD/YYYY"
-  license_end: "MM/DD/YYYY"
+## Enter in mm/dd/yyyy format. Dates will be converted according to the dateFormat param
+  license_start: "01/02/2023"
+  license_end: "01/01/2024"
+## renewalPlaced overrides renewal date color logic when true
+  renewalPlaced: false
   workbench_NU: "N/A"
-  connect_NU: "100 NU"
+  connect_NU: "N/A"
   PPM: "N/A"
-  academy: false
-  PPS: false
-  TAM: false
+## Display business days until renewal on the license review slide
+  RenewalWarning: false
+## If applicable change to "true"
+  academy: FALSE
+  PPS: FALSE
+  TAM: FALSE
 output-file: "CS_Agenda_and_Team.html"
 #embed resources takes longer to render, but allows you to share the slides outside of the project folder, change to true if you want to be able to share the html with customers
-embed-resources: false
+embed-resources: true
 ---
 ```{r include=FALSE}
 library(quarto)
 library(knitr)
+library(bizdays)
 
 # linkedin image fallback to customer logo
 contact_1_linkedin <- params$pcontact_1_linkedin
@@ -79,7 +89,9 @@ if (contact_4_linkedin=="") {
   contact_4_linkedin <- params$customer_logo
 }
 
-
+# Reformat Dates
+licenseStart <- format(as.Date(params$license_start, "%m/%d/%Y"), params$dateFormat)
+licenseEnd <- format(as.Date(params$license_end, "%m/%d/%Y"), params$dateFormat)
   
 ```
 ##  {background-image="_extensions/jthomasmock/positslides/assets/backgrounds/toc-light.png" background-size="contain"}
@@ -91,7 +103,7 @@ Agenda
 </h2>
 <!-- fix content height -->
 <br> <br>
-<!-- content below -->
+<!-- Agenda below -->
 
 - Team Review
 - Licensing Check In
@@ -158,13 +170,6 @@ Agenda
 
 <!-- License Slide Duo -->
 ## {autoslide=400 transition="slide-in none-out"}
-<!-- Header adjustment > center-->
-<h2 style="text-align: center">
-License Review
-</h2>
-<p style="text-align: center; color:#437099;">
-License Term: `r params$license_start` - `r params$license_end`
-</p>
 <!-- display adjustments -->
 ```{r include=FALSE}
 shapeHeight <- 138
@@ -176,6 +181,31 @@ color4 <- "#7293b2"
 color5 <- "#429599"
 color6 <- "#994665"
 nacolor <- "#8b8b8d"
+
+today <- as.Date(Sys.Date(), "%m/%d/%Y")
+renewalDate <- as.Date(params$license_end, "%m/%d/%Y")
+renewalIn <- as.integer(difftime(renewalDate, today, units = c("days")))
+
+if (params$renewalPlaced == TRUE) {
+  renewalUrgency <- "#437099"
+} else if (renewalIn < 30) {
+  renewalUrgency <- "#ff0000"
+} else if (renewalIn < 60) {
+  renewalUrgency <- "#e06666"
+} else if (renewalIn < 120) {
+  renewalUrgency <- "#ee6430"
+} else {
+  renewalUrgency <- "#437099"
+}
+
+# Business days calc
+if (params$RenewalWarning == TRUE) {
+  business_calendar <- create.calendar('my_calendar', weekdays = c('saturday','sunday'))
+  renewalInBusinessDays <- as.integer(bizdays(today, renewalDate, cal = business_calendar))
+  BDWarning <- paste(" Renewal in ",renewalInBusinessDays," business days")
+} else {
+  BDWarning <- ""
+}
 
 if(params$workbench_NU == "N/A"){
   color1 = nacolor
@@ -263,7 +293,32 @@ if(params$TAM == FALSE){
     diplay: block;
     width: 100%;
   }
+  
+  .licenseTerm {
+    diplay: block;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .renewalColor
+  {
+      color: `r renewalUrgency`;
+  }
+  
+  .standardColor
+  {
+      color: #437099;
+  }
 </style>
+
+<!-- Header adjustment > center-->
+<h2 style="text-align: center">
+License Review
+</h2>
+
+<div class="licenseTerm">
+  <span class="standardColor">License Term: `r licenseStart` - `r licenseEnd`</span>
+</div>
 
 <!-- Graphic -->
 ::: {.fragment .fade-in}
@@ -354,14 +409,15 @@ if(params$TAM == FALSE){
 </div>
 
 <!-- pt 2 -->
-## {transition="none-in slide-out"}
+## {transition="fade-in slide-out"}
 <!-- Header adjustment > center-->
 <h2 style="text-align: center">
 License Review
 </h2>
-<p style="text-align: center; color:#437099;">
-License Term: `r params$license_start` - `r params$license_end`
-</p>
+
+<div class="licenseTerm">
+  <span class="standardColor">License Term: `r licenseStart` - </span><span class="renewalColor">`r paste(licenseEnd, BDWarning, sep = "")`</span>
+</div>
 
 <!-- Graphic -->
 <div class="chevron-grouping">
