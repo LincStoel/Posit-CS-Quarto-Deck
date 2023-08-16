@@ -17,10 +17,12 @@ Fill in the parameter values in the YML frontmatter of the "Posit_Agenda_and_Con
 [bizdays](https://cran.r-project.org/web/packages/bizdays/index.html)
 
 ## Usage
+### Parameters
+To customize your presentation populate the YAML parameters at the top of the document with the relevant information. To alter your agenda or goals navigate to the slides that render those sections and modify the bullet lists as needed. The team and license slides will pull the relevant information from the parameters that you define and automatically render.
 
 ### Images
 
-Image links can be acquired by right clicking the relevant linkedin profile picture or company logo and clicking "Copy Image Address" from the menu. This is the link that is used in the "linkedin" parameters and "customer_logo" parameter.
+Image links can be acquired by right clicking the relevant linkedin profile picture or company logo and clicking "Copy Image Address" from the menu. This is the link that is used in the "linkedin" parameters and "customer_logo" parameter. This means that if the image is updated your presentation will also update accordingly.
 
 ### embed-resources
 

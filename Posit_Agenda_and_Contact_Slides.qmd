@@ -494,6 +494,6 @@ License Review
 - Next year?
 - Training?
 
-<!-- I suggest removing this next slide before sending to customer since the link wont work for them -->
+<!-- I suggest removing this next slide before sending this presentation to non Posit employees as they will not have permission to view the linked presentation -->
 ## Posit Resources & News
 [Posit Updates](https://docs.google.com/presentation/d/1J0laJCbv7LrW20Q7CWfHfPJvnVJVZt6GGvuJ_cGHBJI/edit?usp=sharing)
