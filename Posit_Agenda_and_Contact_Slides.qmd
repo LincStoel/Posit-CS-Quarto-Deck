@@ -94,11 +94,11 @@ Agenda
 <!-- content below -->
 
 - Team Review
+- Licensing Check In
 - Review strategic goals for your Posit software
   - Next 6 months
   - Next year
 - Posit resources and news
-- Review action items
 
 ## The Teams
 ::: columns
