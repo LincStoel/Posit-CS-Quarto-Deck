@@ -40,8 +40,11 @@ params:
   cs_linkedin: "https://posit.co/wp-content/uploads/2022/09/posit.svg"
   president_name: Tareef Kawaf
   president_linkedin: "https://media.licdn.com/dms/image/C4E03AQENYjMMdu8fDg/profile-displayphoto-shrink_200_200/0/1579126397641?e=1693440000&v=beta&t=U8myQndUTyAT1rl3bx462fsBgDWGbdQEOx2V_vtbm-s"
-  agenda: ""
-  license_term: "XX/YY/ZZ - XX/YY/ZZ"
+  
+## Licensing parameters
+## If not applicable populate with "N/A"
+  license_start: "MM/DD/YYYY"
+  license_end: "MM/DD/YYYY"
   workbench_NU: "N/A"
   connect_NU: "100 NU"
   PPM: "N/A"
@@ -49,7 +52,7 @@ params:
   PPS: false
   TAM: false
 output-file: "CS_Agenda_and_Team.html"
-#embed resources takes longer to render, but allows you to share the slides outside of the project folder, change to false if you don't need that functionality
+#embed resources takes longer to render, but allows you to share the slides outside of the project folder, change to true if you want to be able to share the html with customers
 embed-resources: false
 ---
 ```{r include=FALSE}
@@ -153,14 +156,14 @@ Agenda
 :::
 :::
 
-
-## 
+<!-- License Slide Duo -->
+## {autoslide=400 transition="slide-in none-out"}
 <!-- Header adjustment > center-->
 <h2 style="text-align: center">
 License Review
 </h2>
 <p style="text-align: center; color:#437099;">
-License Term: `r params$license_term`
+License Term: `r params$license_start` - `r params$license_end`
 </p>
 <!-- display adjustments -->
 ```{r include=FALSE}
@@ -199,7 +202,7 @@ if(params$TAM == FALSE){
 }
 
 ```
-<!-- Content -->
+<!-- Styling -->
 <style>
   .hexagon {
     position: absolute;
@@ -219,6 +222,7 @@ if(params$TAM == FALSE){
     width: 100%;
     top: 13%;
   }
+  
   .radialImg {
     width: 30%;
     height: auto;
@@ -262,19 +266,44 @@ if(params$TAM == FALSE){
 </style>
 
 <!-- Graphic -->
+::: {.fragment .fade-in}
 <div class="chevron-grouping">
   <div class="hexagon" style="background:`r color1`; left:51.55%; top:9.7%;"></div>
+</div>
+:::
+::: {.fragment .fade-in}
+<div class="chevron-grouping">
   <div class="hexagon" style="background:`r color2`; left:58%; top:29.87%;"></div>
+</div>
+:::
+::: {.fragment .fade-in}
+<div class="chevron-grouping">
   <div class="hexagon" style="background:`r color3`; left:51.55%; top:50.3%;"></div>
-  <div class="hexagon" style="background:`r color4`; left:38.5%; top:9.7%;"></div>
-  <div class="hexagon" style="background:`r color5`; left:32%; top:29.72%;"></div>
+</div>
+:::
+::: {.fragment .fade-in}
+<div class="chevron-grouping">
   <div class="hexagon" style="background:`r color6`; left:38.45%; top:50.3%;"></div>
-  
+</div>
+:::
+::: {.fragment .fade-in}
+<div class="chevron-grouping">
+  <div class="hexagon" style="background:`r color5`; left:32%; top:29.72%;"></div>
+</div>
+:::
+::: {.fragment .fade-in}
+<div class="chevron-grouping">
+  <div class="hexagon" style="background:`r color4`; left:38.5%; top:9.7%;"></div>
+</div>
+:::
+
+<div class="chevron-grouping">
   <figure class="radial">
       <img src="_additional_images/posit_solutions_radial.png" class="radialImg"/>
   </figure>
 </div>
 
+<!-- Product Descriptions -->
 <div class="Parent">
 <!-- Left Columnn -->
 <div class="row">
@@ -324,6 +353,84 @@ if(params$TAM == FALSE){
 </div>
 </div>
 
+<!-- pt 2 -->
+## {transition="none-in slide-out"}
+<!-- Header adjustment > center-->
+<h2 style="text-align: center">
+License Review
+</h2>
+<p style="text-align: center; color:#437099;">
+License Term: `r params$license_start` - `r params$license_end`
+</p>
+
+<!-- Graphic -->
+<div class="chevron-grouping">
+  <div class="hexagon" style="background:`r color1`; left:51.55%; top:9.7%;"></div>
+  <div class="hexagon" style="background:`r color2`; left:58%; top:29.87%;"></div>
+  <div class="hexagon" style="background:`r color3`; left:51.55%; top:50.3%;"></div>
+  <div class="hexagon" style="background:`r color6`; left:38.45%; top:50.3%;"></div>
+  <div class="hexagon" style="background:`r color5`; left:32%; top:29.72%;"></div>
+  <div class="hexagon" style="background:`r color4`; left:38.5%; top:9.7%;"></div>
+</div>
+
+<div class="chevron-grouping">
+  <figure class="radial">
+      <img src="_additional_images/posit_solutions_radial.png" class="radialImg"/>
+  </figure>
+</div>
+
+<!-- Product Descriptions -->
+<div class="Parent">
+<!-- Left Columnn -->
+<div class="row">
+<div class="boxed_left">
+  <h4 style="font-size:36px;"><font color=`r color4`>Posit Academy</font></h4>
+  
+  <small>Train data scientists in R and Python with our guided apprenticeship program. Complete real data science projects, share your work in group sessions, and learn from our mentors.</small>
+</div>
+
+<div class="boxed_left">
+  <h4 style="font-size:36px;"><font color=`r color5`>Premium Plus Support</font></h4>
+  
+  <small>Callback support, expanded support hours (7a-7p ET excl. weekends + holidays), 4-hour response time for Sev1 and Sev2 issues.</small>
+</div>
+
+<div class="boxed_left">
+  <h4 style="font-size:36px;"><font color=`r color6`>Technical Account Management (TAM)</font></h4>
+  
+  <small>Weekly meetings with Posit Solutions Engineers to help you architect your platform and provide a great experience for your users.</small>
+</div>
+</div>
+
+<!-- spacer -->
+<div class="spacer">
+</div>
+
+<div class="row">
+<!-- Right Columnn -->
+
+<div class="boxed_right">
+  <h4 style="font-size:36px;"><font color=`r color1`>Posit Workbench (`r params$workbench_NU`)</font></h4>
+  
+  <small>Develop in RStudio, Jupyter, and VS Code with additional features for enterprise collaboration, security, and scalability.</small>
+</div>
+
+<div class="boxed_right">
+  <h4 style="font-size:36px;"><font color=`r color2`>Posit Connect (`r params$connect_NU`)</font></h4>
+  
+  <small>Share your applications, schedule your code, and deploy your models in R and Python frameworks like Shiny, Quarto, Streamlit, Dash, R Markdown, and more.</small>
+</div>
+
+<div class="boxed_right">
+  <h4 style="font-size:36px;"><font color=`r color3`>Posit Package Manager (`r params$PPM`)</font></h4>
+  
+  <small>Control and distribute R and Python packages throughout your organization. Serve packages from CRAN, PyPI, Bioconductor, and internally developed packages.</small>
+</div>
+</div>
+</div>
+
+<!-- End of license slide -->
+
 ## Strategic Goals for your Posit software {background-color="#17212B"}
 
 <!-- content goes here -->
@@ -331,8 +438,6 @@ if(params$TAM == FALSE){
 - Next year?
 - Training?
 
+<!-- I suggest removing this next slide before sending to customer since the link wont work for them -->
 ## Posit Resources & News
-
-<!-- content goes here -->
-- [Data science advisor](https://calendly.com/ryan_posit) topics
-- New [admin](https://colorado.posit.co/rsc/posit-admin-training/) resources
+[Posit Updates](https://docs.google.com/presentation/d/1J0laJCbv7LrW20Q7CWfHfPJvnVJVZt6GGvuJ_cGHBJI/edit?usp=sharing)
